@@ -32,3 +32,34 @@ class ManageProjectPageHelper:
         with allure.step('Нажать Create New Project'):
             wd.find_element(By.XPATH, "//input[@type='submit' and @value='Add Project']").click()
             WebDriverWait(wd, 5).until(expected_conditions.invisibility_of_element_located((By.XPATH, "//td[contains(text(), 'Add Project')]")))
+
+    def open_project(self, project_name):
+        wd = self.app.wd
+        with allure.step('Нажать на ссылку с названием проекта'):
+            WebDriverWait(wd, 10).until(expected_conditions.element_to_be_clickable(
+                (By.LINK_TEXT, f"{project_name}")))
+            wd.find_element(By.LINK_TEXT, f"{project_name}").click()
+            WebDriverWait(wd, 10).until(expected_conditions.presence_of_element_located(
+                (By.NAME, "project_id")))
+
+    def submit_delete_project(self):
+        wd = self.app.wd
+        with allure.step('Подтвердить удаление'):
+            wd.find_element(By.XPATH, "//form[@action='manage_proj_delete.php']//input[@value='Delete Project']").click()
+            WebDriverWait(wd, 10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, "//table[@class='width100']//td[@class='form-title']")))
+    def init_delete_project(self):
+        wd = self.app.wd
+        with allure.step('Нажать кнопку удаления проекта'):
+            wd.find_element(By.XPATH, "//input[@value='Delete Project']").click()
+            WebDriverWait(wd, 10).until(expected_conditions.element_to_be_clickable(
+                (By.XPATH, "//form[@action='manage_proj_delete.php']//input[@value='Delete Project']")))
+
+    def delete_project(self, project):
+        self.open_project(project.project_name)
+        self.init_delete_project()
+        self.submit_delete_project()
+
+
+
+

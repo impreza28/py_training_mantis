@@ -1,8 +1,3 @@
-from selenium.webdriver.common.by import By
-import allure
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-import selenium
 from model.project import Project
 from datetime import datetime
 import re
@@ -11,7 +6,7 @@ import re
 def test_add_new_project(app, db):
 
     # тестовые данные
-    project_name = clear(str(datetime.now().time()))
+    project_name = 'Autotest' + f'{clear(str(datetime.now().time()))}'
     project = Project(project_name=project_name)
 
     # открыть главную страницу
@@ -42,17 +37,3 @@ def test_add_new_project(app, db):
 
 def clear(s):
     return re.sub("[() - : .]", "", s)
-
-
-
-#    self.driver.find_element(By.NAME, "name").click()
-#    self.driver.find_element(By.NAME, "name").send_keys("test")
-#    self.driver.find_element(By.CSS_SELECTOR, ".button").click()
-#    self.driver.find_element(By.CSS_SELECTOR, ".form-title .button-small").click()
-#    self.driver.find_element(By.NAME, "name").click()
-#    self.driver.find_element(By.NAME, "name").send_keys("sadsads")
-#    self.driver.find_element(By.CSS_SELECTOR, ".button").click()
-#    self.driver.find_element(By.LINK_TEXT, "Proceed").click()
-#    self.driver.find_element(By.LINK_TEXT, "test").click()
-#    self.driver.find_element(By.CSS_SELECTOR, "form > .button:nth-child(3)").click()
-#    self.driver.find_element(By.CSS_SELECTOR, ".button").click()

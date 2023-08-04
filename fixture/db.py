@@ -9,16 +9,16 @@ class DbFixture:
         self.connection = pymysql.connect(host=host, database=name, user=user, password=password, autocommit=True)
 
     def get_project_list(self):
-        group_list = []
+        project_list = []
         cursor = self.connection.cursor()
         try:
             cursor.execute("SELECT id, name FROM mantis_project_table")
             for row in cursor:
                 (id, name) = row
-                group_list.append(Project(id=str(id), project_name=name))
+                project_list.append(Project(id=str(id), project_name=name))
         finally:
             cursor.close()
-        return group_list
+        return project_list
 
 
     def destroy(self):
