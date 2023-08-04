@@ -10,7 +10,7 @@
   "db":
   {
    "host": "localhost",
-    "name": "addressbook",
+    "name": "bugtracker",
     "user": "root",
     "password": ""
   }

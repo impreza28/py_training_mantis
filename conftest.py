@@ -3,7 +3,7 @@ import os.path
 import pytest
 from fixture.application import Application
 from fixture.db import DbFixture
-from fixture.session import SessionHelper
+
 import importlib
 import os.path
 
@@ -34,7 +34,7 @@ def app(request):
 @pytest.fixture(scope="session", autouse=True)
 def stop(request):
     def fin():
-        fixture.session.ensure_logout()
+        #fixture.session.ensure_logout()
         fixture.destroy()
 
     request.addfinalizer(fin)

@@ -1,5 +1,5 @@
 import pymysql
-
+from model.project import Project
 class DbFixture:
     def __init__(self, host, name, user, password):
         self.host = host
@@ -8,14 +8,14 @@ class DbFixture:
         self.password = password
         self.connection = pymysql.connect(host=host, database=name, user=user, password=password, autocommit=True)
 
-    def get_group_list(self):
+    def get_project_list(self):
         group_list = []
         cursor = self.connection.cursor()
         try:
-            cursor.execute("select group_id, group_name, group_header, group_footer from group_list")
+            cursor.execute("SELECT id, name FROM mantis_project_table")
             for row in cursor:
-                (id, name, header, footer) = row
-                group_list.append(id)
+                (id, name) = row
+                group_list.append(Project(id=str(id), project_name=name))
         finally:
             cursor.close()
         return group_list

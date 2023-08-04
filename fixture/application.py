@@ -2,6 +2,8 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from fixture.session import SessionHelper
+from fixture.manage_pages import ManagePageHelper
+from fixture.manage_project import ManageProjectPageHelper
 import allure
 
 
@@ -22,6 +24,8 @@ class Application:
         self.vars = {}
         self.session = SessionHelper(self)
         self.base_url = base_url
+        self.manage_page = ManagePageHelper(self)
+        self.manage_project = ManageProjectPageHelper(self)
 
     def destroy(self):
         self.wd.quit()

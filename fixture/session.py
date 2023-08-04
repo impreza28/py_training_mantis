@@ -18,6 +18,14 @@ class SessionHelper:
         with allure.step('Нажать кнопку Login'):
             wd.find_element(By.XPATH, '//input[@value="Login"]').click()
 
+    def find_logout_link(self):
+        wd = self.app.wd
+        wd.find_element(By.LINK_TEXT, "Logout")
+    def find_login_form(self):
+        wd = self.app.wd
+        return len(wd.find_elements(By.NAME, "login_form"))
+
+
     def logout(self):
         wd = self.app.wd
         with allure.step('Нажать на ссылку Logout'):
