@@ -11,9 +11,6 @@ def test_add_new_project(app, db):
 
     # открыть главную страницу
     app.open_home_page()
-    # если не залогинены, то авторизоваться
-    if app.session.find_login_form() == 1:
-        app.session.login("administrator", "root")
 
     # открыть страницу с проектами
     app.manage_page.open_manage_page()
