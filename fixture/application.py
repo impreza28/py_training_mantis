@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from fixture.session import SessionHelper
 from fixture.manage_pages import ManagePageHelper
 from fixture.manage_project import ManageProjectPageHelper
+from fixture.soap import SoapHelper
 import allure
 
 
@@ -26,6 +27,7 @@ class Application:
         self.base_url = base_url
         self.manage_page = ManagePageHelper(self)
         self.manage_project = ManageProjectPageHelper(self)
+        self.soap = SoapHelper(self)
 
     def destroy(self):
         self.wd.quit()
