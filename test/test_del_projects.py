@@ -62,7 +62,7 @@ def test_del_project_with_soap(app, db):
 
     # получить список проектов до удаления
     old_projects_list = db.get_project_list()
-    old_projects_list_soap = app.soap.soap_mc_projects_get_user_accessible("administrator", "root")
+    old_projects_list_soap = app.soap.soap_mc_projects_get_user_accessible()
 
     #выбрать проект
     selected_project = random.choice(old_projects_list)
@@ -72,7 +72,7 @@ def test_del_project_with_soap(app, db):
     app.manage_project.delete_project(selected_project)
 
     # получить список проектов после удаления проекта
-    new_projects_list_soap = app.soap.soap_mc_projects_get_user_accessible("administrator", "root")
+    new_projects_list_soap = app.soap.soap_mc_projects_get_user_accessible()
 
     assert len(new_projects_list_soap)+1 == len(old_projects_list_soap), \
         "Количество проектов до удаления не совпадает с количеством после удаления"

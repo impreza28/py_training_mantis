@@ -10,7 +10,7 @@ import allure
 
 
 class Application:
-    def __init__(self, browser,base_url):
+    def __init__(self, browser, base_url, username=None, password=None):
 
         if browser == "firefox":
             self.wd = webdriver.Firefox()
@@ -28,6 +28,8 @@ class Application:
         self.manage_page = ManagePageHelper(self)
         self.manage_project = ManageProjectPageHelper(self)
         self.soap = SoapHelper(self)
+        self.username = username
+        self.password = password
 
     def destroy(self):
         self.wd.quit()

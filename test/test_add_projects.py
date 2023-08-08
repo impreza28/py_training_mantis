@@ -47,7 +47,7 @@ def test_add_new_project_with_soap_check(app):
     app.manage_page.open_manage_projects()
 
     # получить список проектов до добавления нового
-    old_projects_list = app.soap.soap_mc_projects_get_user_accessible("administrator", "root")
+    old_projects_list = app.soap.soap_mc_projects_get_user_accessible()
     # проверить что проекта с таким названием нет
     str_old_projects_list = str(old_projects_list)
     assert project_name not in str_old_projects_list
@@ -55,7 +55,7 @@ def test_add_new_project_with_soap_check(app):
     # добавить новый проект
     app.manage_project.create_new_project(project)
     # получить список проектов после добавления нового проекта
-    new_projects_list = app.soap.soap_mc_projects_get_user_accessible("administrator", "root")
+    new_projects_list = app.soap.soap_mc_projects_get_user_accessible()
 
     assert len(new_projects_list)-1 == len(old_projects_list), \
         "Количество проектов до добавления не совпадает с количеством после добавления"
